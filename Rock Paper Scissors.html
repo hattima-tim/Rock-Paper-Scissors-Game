@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+function ComputerPlay(){
+    let a="rock"
+    let b="paper"
+    let c="scissors"
+    let d=Math.floor((Math.random()*30)+1);
+    if (d<=10){
+            return a;
+        }
+    else if (d<=20){
+            return b;
+        }
+    else{
+            return c;
+        }
+}
+//ComputerPlay function done.This function play against the player.
+//The "d" variable will select a random number each time the funtion is called.
+//So as the "d" variable is giving a random number every time,
+//I used it to select "rock","paper","scissors" randomly against the palyer.
+
+function PlayRound(){
+//The purpose of this function is to make the COMPUTER and USER play against each other.
+//And return the result of each match between USER and COMPUTER.    
+    let PlayerInput=prompt("")
+    let PlayerSelection=PlayerInput.toLowerCase()
+    let ComputerSelection=ComputerPlay()
+
+    if (PlayerSelection=="rock" && ComputerSelection=="paper"){
+            return "You lose" //Here "You" means the user or the player.
+        }
+    else if (PlayerSelection=="scissors" && ComputerSelection=="rock"){
+            return "You lose"
+        }
+    else if (PlayerSelection=="paper" && ComputerSelection=="scissors"){
+            return "You lose"
+        }
+    else if (PlayerSelection=="paper" && ComputerSelection=="rock"){
+            return "You won" //Here "You" means the user or the player.
+        }
+    else if (PlayerSelection=="rock" && ComputerSelection=="scissors"){
+            return "You won"
+        }
+    else if (PlayerSelection=="scissors" && ComputerSelection=="paper"){
+            return "You won"
+        }
+    else if (PlayerSelection=="scissors" && ComputerSelection=="scissors"){
+            return "tie"
+        }
+    else if (PlayerSelection=="paper" && ComputerSelection=="paper"){
+            return "tie"
+        }
+    else if (PlayerSelection=="rock" && ComputerSelection=="rock"){
+            return "tie"
+        }
+    else {
+            return "You have entered the wrong value!Please enter a right value."
+            //Wrong value means value other than "rock","paper","scissors".
+        }
+}
+//Declaring "user" and "Computer" variable for letter use.
+//They will be used to show the score of the match between "User" and "Computer".
+let User=0
+let Computer=0
+//Writing the 'Tie' function.
+//This function will execute when there is a tie in a match.
+//This function will be used letter.Just declaring early for writing clean and perfectly working code.
+function Tie(){
+    alert("A TIE!!!!We will play an extra match to settle the score.")
+    let Tie=PlayRound()
+    if (Tie=="You won"){
+        return "User="+(User+=1)
+        }
+    else if (Tie=="You lose"){
+        return "Computer="+(Computer+=1)
+        }
+    else if (Tie=="You have entered the wrong value!Please enter a right value."){
+        return Error()
+        }
+//Error() function is declared after this function.This function will execute if USER input a wrong value.    
+    else {
+////The reason for this "else" is,
+//I have found that there is a chance for atleast 3 TIE happening one after another.
+//The code between LINE 69 and 79 is written to play an extra match when a match has it's first TIE
+//and the code between LINE 81 and 97 is written to play an extra match when there is a second TIE.        
+        alert("PAIN!!!ANOTHER TIE.We will again play an extra match to settle the score.")
+        let TieNumber2=PlayRound()
+        if (TieNumber2=="You won"){
+            return "User="+(User+=1)
+            }
+        else if (TieNumber2=="You lose"){
+            return "Computer="+(Computer+=1)
+            }
+        else if (TieNumber2=="You have entered the wrong value!Please enter a right value."){
+            return Error()
+            }
+//The code between 97 and 106 is written to play an extra match when there is a THIRD TIE.    
+        else {
+            alert("NOT AGAIN!!!THIRD TIE!!!!.We will again play an extra match to settle the score.")
+            let TieNumber3=PlayRound()
+            if (TieNumber3=="You won"){
+                return "User="+(User+=1)
+                }
+            else if (TieNumber3=="You lose"){
+                return "Computer="+(Computer+=1)
+                } 
+            }   
+        }
+
+}
+//END of the 'Tie' function.
+//Start of the Error function.
+//This function is for the time when USER input wrong values.
+function Error(){
+    alert("You have entered the wrong value!Please enter a right value.")
+    let error=PlayRound()
+    if (error=="You won"){
+        return "User="+(User+=1)
+    }
+    else if (error=="You lose"){
+        return "Computer="+(Computer+=1)
+    }
+}
+//Error function ends.
+function Game(){
+//Start of the Game function.
+//This function is for giving score to the "User" and "Computer"
+    let a=PlayRound()
+    if (a=="You won"){
+        return "User="+(User+=1)
+    }
+    else if (a=="You lose"){
+        return "Computer="+(Computer+=1)
+    }
+    else if (a=="tie"){
+        return Tie()
+    }
+    else {
+        return Error()
+    }
+}
+//Game() ends.
+console.log(Game())
+console.log(Game())
+console.log(Game())
+console.log(Game())
+console.log(Game())
+//Above code is for play the game 5 times,show the result for each match and store the score for each PARTICIPANTS for letter use.
+if (User>Computer){ //User score vs Computer score.
+    console.log("You win!")
+}
+else {
+    console.log("Computer win!")
+}
+</script>
+</body>
+</html>
