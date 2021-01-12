@@ -20,6 +20,7 @@ function ComputerPlay(){
 function PlayRound(id){
 //The purpose of this function is to make the COMPUTER and USER play against each other.
 //And return the result of each match between USER and COMPUTER.    
+//here the "id" parameter is referencing to the button id's.
   let PlayerInput=id;
   let PlayerSelection=PlayerInput.toLowerCase();
   let ComputerSelection=ComputerPlay();
@@ -71,7 +72,7 @@ function Tie(id){
         paraPcScore.textContent=`Computer Score=${Computer+=1}`;
         }
     else {
-////The reason for this "else" is,
+//The reason for this "else" is,
 //I have found that there is a chance for atleast 3 TIE happening one after another.
 //The code between LINE 65 and 71 is written to play an extra match when a match has it's first TIE
 //and the code between LINE 72 and 84 is written to play an extra match when there is a second TIE.        
